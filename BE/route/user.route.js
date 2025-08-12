@@ -1,0 +1,25 @@
+
+
+const userRoute = require("express").Router()
+const isinfoValidate = require("../middleware/isinfoValidate.middleware");
+const { signupSchema, loginSchema } = require("../validator/auth-validation.schema");
+const userController = require("../controller/user.controller");
+const upload = require("../middleware/multer.middleware");
+
+userRoute.get("/set-cookie", (req, res) => {
+    res.cookie("token", "0rx30pt6jh", {
+        httpOnly: true,
+        secure: false,
+        maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    res.json({ message: "Cookie has been set" });
+});
+
+userRoute.route("/register").post(upload.single("avatar"), userController.register)
+userRoute.route("/login").post(userController.login)
+userRoute.route("/logout").get(userController.logout)
+
+
+module.exports = userRoute
+
