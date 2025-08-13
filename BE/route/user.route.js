@@ -18,7 +18,7 @@ userRoute.get("/set-cookie", (req, res) => {
 
 userRoute.route("/register").post(upload.single("avatar"), userController.register)
 userRoute.route("/login").post(userController.login)
-userRoute.route("/logout").get(userController.logout)
+userRoute.route("/logout").get(userController.logout) // ! maybe i kept it too post instead of get
 
 
 module.exports = userRoute
