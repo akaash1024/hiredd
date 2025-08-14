@@ -45,12 +45,12 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
     console.log(req.body);
-    
+
     try {
         const { email, password } = req.body;
         const isUserExist = await User.findOne({ email }).select("+password");
 
-        console.log(isUserExist);
+
 
 
         if (!isUserExist) {
@@ -76,6 +76,7 @@ const login = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "Login successful",
+            user: isUserExist,
             userId: isUserExist._id.toString(), // optional
         });
 
@@ -101,7 +102,7 @@ const user = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "User details fetched successfully.",
-            data: userData,
+            userData
         });
 
     } catch (error) {

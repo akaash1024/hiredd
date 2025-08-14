@@ -4,9 +4,11 @@ import { AppLayout } from "./layout/AppLayout";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import { Dashboard } from "./pages/Dashboard";
+import {  JobPortalDashboard } from "./pages/Dashboard";
 import { Recruiter } from "./pages/Recruiter";
 import { Candidate } from "./pages/Candidate";
+import { Login } from "./pages/Login";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -16,16 +18,21 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Dashboard />,
+        element: <JobPortalDashboard />,
       },
       {
-        path: "/recruiter",
-        element: <Recruiter />,
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/candidate",
         element: <Candidate />,
       },
+      {
+        path: "/recruiter",
+        element: <Recruiter />,
+      },
+      ,
     ],
   },
 ]);
@@ -34,6 +41,19 @@ const App = () => {
     <Provider store={store}>
       <AuthProvider>
         <RouterProvider router={router} />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          bodyClassName="toastBody"
+        />
       </AuthProvider>
     </Provider>
   );

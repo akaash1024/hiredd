@@ -5,6 +5,7 @@ const isinfoValidate = require("../middleware/isinfoValidate.middleware");
 const { signupSchema, loginSchema } = require("../validator/auth-validation.schema");
 const userController = require("../controller/user.controller");
 const upload = require("../middleware/multer.middleware");
+const isAuthenticated = require("../middleware/isAuthenicated.middleware");
 
 userRoute.get("/set-cookie", (req, res) => {
     res.cookie("token", "0rx30pt6jh", {
@@ -20,6 +21,7 @@ userRoute.route("/register").post(upload.single("avatar"), userController.regist
 userRoute.route("/login").post(userController.login)
 userRoute.route("/logout").get(userController.logout) // ! maybe i kept it too post instead of get
 
+userRoute.route("/me").get(isAuthenticated, userController.user);
 
 module.exports = userRoute
 

@@ -1,12 +1,40 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { api } from "../api/axios";
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [state, setState] = useState(0);
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // const userAuthentication = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //      const { data } = await api.get("/api/auth/me");
+  //     setUser(data.userData);
+  //   } catch (err) {
+  //     setUser(null);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // const LogoutUser = async () => {
+  //   await api.get("/api/auth/logout");
+  //   setUser(null);
+  // };
+
+  useEffect(() => {
+    // userAuthentication();
+  }, []);
+
   let value = {
-    state,
-    setState,
+    api,
+    user,
+    isLoading,
+    isLoggedIn: !!user,
+    // LogoutUser,
+    // userAuthentication,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
