@@ -4,54 +4,43 @@ import {  CreateJob } from "./hireComponent/CreatedJobs";
 import { Candidates } from "./hireComponent/Candidates";
 import { useSelector } from "react-redux";
 import { Jobs } from "./hireComponent/Jobs";
+import { useAuth } from "../context/AuthContext";
 
 const LoggedInUserInfo = () => {
   const { currentUser } = useSelector((state) => state.users);
 
-  if (!currentUser) {
-    return <h2>Loading user info...</h2>;
-  }
+  if (!currentUser) return <h2>Loading user info...</h2>;
 
-  const { name, avatar, role, profile } = currentUser;
-  const { headline, bio, skills, location } = profile || {};
+  const { name, avatar, profile } = currentUser;
+  const { headline, location } = profile || {};
 
   return (
-    <div className="user-info" style={{ display: "flex" }}>
-      <img
-        src={avatar}
-        alt={name}
-        style={{
-          width: "60px",
-          height: "60px",
-          borderRadius: "50%",
-          objectFit: "cover",
-          marginBottom: "0.5rem",
-        }}
-      />
-      <div style={{display: "flex", flexDirection: "column", gap: "1px"}}>
-        <h2> {name}</h2>
-        {headline && <p>{headline}</p>}
+    <div className="user-info">
+      <div className="img-section">
+        <img src={avatar} alt={name} />
       </div>
-      {bio && (
-        <p>
-          <strong>Bio:</strong> {bio}
-        </p>
-      )}
-      {role && (
-        <p>
-          <strong>Role:</strong> {role}
-        </p>
-      )}
-      {location && (
-        <p>
-          <strong>Location:</strong> {location}
-        </p>
-      )}
-      {skills?.length > 0 && (
-        <p>
-          <strong>Skills:</strong> {skills.join(", ")}
-        </p>
-      )}
+      <div className="user-details">
+        <h2>{name}</h2>
+        {headline && <h4>{headline}</h4>}
+        {location && <h4>{location}</h4>}
+      </div>
+    </div>
+  );
+};
+export const SearchSection = () => {
+  const { searchTerm, setSearchTerm, showFilters, setShowFilters } = useAuth();
+  return (
+    <div className="search-section">
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by HR name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <span className="search-icon">🔍</span>
+      </div>
     </div>
   );
 };
@@ -87,6 +76,8 @@ export const Hire = () => {
             {/* Header */}
             <div className="hire-headingSection">
               <LoggedInUserInfo />
+              <SearchSection />
+              
             </div>
 
             {/* Main Content */}

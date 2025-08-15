@@ -1,3 +1,5 @@
+import { SearchSection } from "../component/Apply";
+
 export const JobPortalDashboard = () => {
   return (
     <main id="main">
@@ -10,12 +12,9 @@ export const JobPortalDashboard = () => {
           Connect with top companies and kickstart your career
         </h4>
 
-        <div className="hero-input">
-          <input
-            type="text"
-            placeholder="Search jobs, skills, or companies..."
-          />
-        </div>
+        
+          <SearchSection />
+        
 
         <div style={{maxWidthy:"140rem" }}>
           <img

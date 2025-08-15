@@ -6,6 +6,8 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
 
   // const userAuthentication = async () => {
   //   try {
@@ -33,6 +35,10 @@ export const AuthProvider = ({ children }) => {
     user,
     isLoading,
     isLoggedIn: !!user,
+    searchTerm,
+    setSearchTerm,
+    showFilters,
+    setShowFilters,
     // LogoutUser,
     // userAuthentication,
   };
