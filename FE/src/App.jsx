@@ -4,11 +4,13 @@ import { AppLayout } from "./layout/AppLayout";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import {  JobPortalDashboard } from "./pages/Dashboard";
+import { JobPortalDashboard } from "./pages/Dashboard";
 import { Recruiter } from "./pages/Recruiter";
 import { Candidate } from "./pages/Candidate";
 import { Login } from "./pages/Login";
 import { ToastContainer } from "react-toastify";
+import { Apply } from "./component/Apply";
+import { Hire } from "./component/Hire";
 
 const router = createBrowserRouter([
   {
@@ -25,14 +27,13 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/candidate",
-        element: <Candidate />,
+        path: "/apply",
+        element: <Apply />,
       },
       {
-        path: "/recruiter",
-        element: <Recruiter />,
+        path: "/hire",
+        element: <Hire />,
       },
-      ,
     ],
   },
 ]);

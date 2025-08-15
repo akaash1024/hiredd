@@ -2,13 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { api } from "../../api/axios";
 
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
-    const res = await api.get("/jobs")
-    return res.data
+    const {data} = await api.get("/api/job")
+    console.log(`logged form slice`, data.jobs);
+    return data.jobs
 })
 
 export const addJob = createAsyncThunk("jobs/addJob", async (jobData) => {
-    const res = await api.post("/jobs", jobData)
-    return res.data
+    const { data } = await api.post("/jobs", jobData)
+    
+    
+    return data.jobs
 })
 
 
@@ -29,6 +32,8 @@ const jobSlice = createSlice({
             .addCase(fetchJobs.fulfilled, (state, action) => {
                 state.status = "succeeded"
                 state.jobs = action.payload
+                console.log(`is added to jobstate?`, state.jobs);
+                
             })
             .addCase(fetchJobs.rejected, (state, action) => {
                 state.status = "failed"

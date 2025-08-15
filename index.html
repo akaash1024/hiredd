@@ -1,0 +1,38 @@
+<html>
+  <style>
+    .gridContainer {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr; /* First column for aside, rest for main */
+      grid-template-rows: 100px 1fr 1fr; /* First row for heading, rest for content */
+      gap: 0; /* No space between cells */
+      max-width: 140rem;
+      height: 80vh; /* Full screen height */
+    }
+
+    .asideSection {
+      background-color: red;
+      grid-row: 1 / 4; /* Span all 3 rows */
+      grid-column: 1 / 2;
+    }
+
+    .headingSection {
+      background-color: pink;
+      grid-row: 1 / 2; /* First row */
+      grid-column: 2 / 4; /* Span 2 columns */
+    }
+
+    .mainSection {
+      background-color: blueviolet;
+      grid-row: 2 / 4; /* Span rows 2 and 3 */
+      grid-column: 2 / 4; /* Span columns 2 and 3 */
+    }
+  </style>
+
+  <body>
+    <div class="gridContainer">
+      <div class="gridElement asideSection"></div>
+      <div class="gridElement headingSection"></div>
+      <div class="gridElement mainSection"></div>
+    </div>
+  </body>
+</html>
