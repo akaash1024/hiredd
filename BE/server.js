@@ -16,10 +16,17 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
+
+const allowedOrigins = process.env.NODE_ENV === 'production'
+    ? ["https://hiredd-git-main-akashs-projects-dc5d2db0.vercel.app"]
+    : ["http://localhost:5173"];
+
 app.use(cors({
-    origin: "http://localhost:5173", // or wherever your React app runs
-    credentials: true, // <--- important for cookies
-}))
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 
 
