@@ -4,6 +4,7 @@ import { Vacancy } from "./applyComponent/Vacancy";
 import { Applied } from "./applyComponent/Applied";
 import { Saved } from "./applyComponent/Saved";
 import { useAuth } from "../context/AuthContext";
+import { SearchFilter } from "./SearchFilter";
 
 // Logged-in user info
 const LoggedInUserInfo = () => {
@@ -52,7 +53,7 @@ export const SearchSection = () => {
         <div className="search-bar" style={{ flex: "4" }}>
           <input
             type="text"
-            placeholder="Search by HR name..."
+            placeholder="Search by Company name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
@@ -76,21 +77,31 @@ export const SearchSection = () => {
           gap: "2rem",
         }}
       >
-        <input type="text" />
-        <select name="" id="">
-          <option value="">city</option>
-        </select>
-        <select name="" id="">
-          <option value="">role</option>
-        </select>
+        <div style={{ display: "flex", gap: "3rem", width: "70%" }}>
+          <div style={{ flex: "3" }}>
+            <input type="text" placeholder="Search by skill" />
+          </div>
+          <div style={{ flex: "1" }}>
+            <select name="" id="">
+              <option value="">Location</option>
+            </select>
+          </div>
+          <div style={{ flex: "1" }}>
+            <select name="" id="">
+              <option value="">Job title</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
+
+
 // Apply Dashboard
 export const Apply = () => {
-  const [actionRender, setActionRender] = useState("applied"); // which section to show
+  const [actionRender, setActionRender] = useState("vacancy");
 
   return (
     <main id="main">
@@ -102,14 +113,14 @@ export const Apply = () => {
               <div className="hire-asideSection--children">
                 <h3 onClick={() => setActionRender("vacancy")}>Vacancy</h3>
                 <h3 onClick={() => setActionRender("applied")}>Applied</h3>
-                {/* <h3 onClick={() => setActionRender("saved")}>Saved</h3> */}
+                <h3 onClick={() => setActionRender("saved")}>Saved</h3>
               </div>
             </div>
 
             {/* Header */}
             <div className="hire-headingSection">
               <LoggedInUserInfo />
-              <SearchSection />
+              <SearchFilter />
             </div>
 
             {/* Main Content */}

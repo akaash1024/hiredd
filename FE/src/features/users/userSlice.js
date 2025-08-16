@@ -14,7 +14,7 @@ export const loginUser = createAsyncThunk("users/loginUser", async (credentials,
     try {
         const { data } = await api.post("/api/auth/login", credentials);
         console.log(data);
-        
+
         return data; // { message, user }
     } catch (err) {
         return rejectWithValue(err.response?.data || { message: "Login failed" });
@@ -31,6 +31,16 @@ export const logoutUser = createAsyncThunk("users/logoutUser", async (_, { rejec
         return rejectWithValue(err.response?.data || { message: "Logout failed" });
     }
 });
+
+export const updateUserData = createAsyncThunk("users/updateUserData", async (updatedData, { rejectWithValue }) => {
+    try {
+        await api.post()
+    } catch (error) {
+        return rejectWithValue(err.response?.data || { message: "User updation failed.. ." });
+    }
+})
+
+
 
 const usersSlice = createSlice({
     name: "users",

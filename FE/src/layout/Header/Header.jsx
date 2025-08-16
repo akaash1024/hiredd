@@ -20,10 +20,16 @@ export const Header = () => {
             <div>
               <div style={{ display: "flex", gap: "1rem" }}>
                 <NavLink to="/apply">
-                  <h4>Apply</h4>
+                  <h4>
+                    <img src="./briefcase.svg" alt="apply-icon" />
+                    Apply
+                  </h4>
                 </NavLink>
                 <NavLink to="/hire">
-                  <h4>Hire</h4>
+                  <h4>
+                    <img src="/users.svg" alt="hire-icony" />
+                    Hire
+                  </h4>
                 </NavLink>
               </div>
             </div>

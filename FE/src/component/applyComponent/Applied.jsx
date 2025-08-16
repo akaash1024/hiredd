@@ -7,15 +7,32 @@ const Card = ({ info }) => {
 
   return (
     <div className="card job-card">
-      <h3 className="job-company">{info.company}</h3>
-      <h4 className="job-title">{info.title}</h4>
-      <p className="job-location">📍 {info.location}</p>
-      <p className="job-description">{info.description}</p>
-
-      <div className="job-group">
-        <span className="job-type">Type: {info.jobType}</span>
-        <span className="job-status">Status: {info.status}</span>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div className="form-group">
+          <h3 className="job-company">{info.company}</h3>
+          <h4 className="job-title">{info.title}</h4>
+          <p className="job-location">📍 {info.location}</p>
+        </div>
+        <div className="form-group">
+          <span className="job-type">Type: {info.jobType}</span>
+          <span className="job-status">Status: {info.status}</span>
+          <div className="btn" style={{ height: ".1rem", width: "8rem" }}>
+            <button
+              style={{
+                height: "100%",
+                width: "100%",
+                fontSize: "1rem",
+                borderRadius: "10%",
+                backgroundColor: "var(--error-color)",
+              }}
+            >
+              Withdraw
+            </button>
+          </div>
+        </div>
       </div>
+
+      <p className="job-description">{info.description}</p>
     </div>
   );
 };

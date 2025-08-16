@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "../../features/jobs/jobSlice";
 import { useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 const Card = ({ info }) => {
   return (
@@ -37,6 +38,7 @@ const Card = ({ info }) => {
 export const Vacancy = () => {
   const dispatch = useDispatch();
   const { jobs, status, error } = useSelector((state) => state.jobs);
+  const { filteredResultsList } = useAuth();
 
   useEffect(() => {
     dispatch(fetchJobs());
@@ -56,7 +58,7 @@ export const Vacancy = () => {
 
   return (
     <div className="hire-mainSection--container grid grid_Col_Four">
-      {jobs.map((job) => (
+      {filteredResultsList.map((job) => (
         <Card key={job._id} info={job} />
       ))}
     </div>

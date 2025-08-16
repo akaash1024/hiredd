@@ -168,7 +168,7 @@ export const SideMenu = () => {
                   />
                 </div>
 
-                {/* <button type="submit">Edit</button> */}
+                <button type="submit">Edit</button>
               </form>
             </div>
           </section>
