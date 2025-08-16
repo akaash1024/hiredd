@@ -165,6 +165,7 @@ A comprehensive full-stack job portal application built with the MERN stack, con
 2. Set `VITE_API_URL` environment variable
 3. Deploy with automatic builds on push
 
+``` 
 ## 🔮 Upcoming Features
 
 - 🤖 **AI Integration** - AI-powered job matching and resume analysis
@@ -188,6 +189,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
+```
 
 
 
