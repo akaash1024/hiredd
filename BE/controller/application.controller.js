@@ -1,5 +1,6 @@
 const Application = require("../model/application.model");
 const JobModel = require("../model/job.model");
+const User = require("../model/user.model");
 
 
 // Apply to a job
@@ -37,11 +38,14 @@ const getMyApplications = async (req, res, next) => {
             .populate("jobId")
             .sort({ createdAt: -1 });
 
-        res.json({ success: true, applications, message: "My applications fetched successfully" });
+        res.json({ success: true, message: "My applications fetched successfully", applications });
     } catch (error) {
         next(error)
     }
 };
+
+
+
 
 // Get all applications for a job (Recruiter/Admin)
 const getJobApplications = async (req, res, next) => {
@@ -60,5 +64,6 @@ const getJobApplications = async (req, res, next) => {
 module.exports = {
     applyJob,
     getMyApplications,
-    getJobApplications
+    getJobApplications,
+    
 }

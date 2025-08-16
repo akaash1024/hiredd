@@ -1,5 +1,19 @@
+const JobModel = require("../model/job.model");
 const User = require("../model/user.model");
 const uploadOnCloudinary = require("../utils/cloudinary");
+
+const getAllUser = async (req, res, next) => {
+    try {
+        const response = await User.find({})
+        return res.status(200).json({
+            success: true,
+            message: "Fetched Successfully",
+            users: response
+        });
+    } catch (error) {
+        next(error)
+    }
+}
 
 
 const register = async (req, res, next) => {
@@ -109,5 +123,64 @@ const user = async (req, res, next) => {
         next(error)
     }
 }
+const getMySavedJobs = async (req, res, next) => {
+    try {
+        const userId = req.user.id; 
 
-module.exports = { register, login, user, logout }
+        const user = await User.findById(userId)
+            .populate("savedJobs")
+            .sort({ createdAt: -1 });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.json({
+            success: true,
+            message: "My saved jobs fetched successfully",
+            savedJobs: user.savedJobs,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+const saveJob = async (req, res, next) => {
+    try {
+        const { jobId } = req.body;
+        const userId = req.user.id;
+
+
+        const job = await JobModel.findById(jobId);
+        if (!job) {
+            return res.status(404).json({ success: false, message: "Job not found" });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        if (user.savedJobs.includes(jobId)) {
+            return res.status(400).json({ success: false, message: "You already saved this job" });
+        }
+
+
+        user.savedJobs.push(jobId);
+        await user.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Job saved successfully",
+            savedJobs: user.savedJobs,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+
+
+module.exports = { register, login, user, logout, getAllUser, getMySavedJobs, saveJob }

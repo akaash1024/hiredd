@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema(
         profile: { headline: String, skills: [String], location: String, bio: String, resumeUrl: String },
         avatar: { type: String, required: true },
         company: { name: String, website: String, description: String, logoUrl: String },
+        savedJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "JobModel" }]
     },
     {
         versionKey: false,

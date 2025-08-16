@@ -10,7 +10,7 @@ export const AppLayout = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    dispatch(fetchJobs());
+    
   }, [dispatch]);
   return (
     <>

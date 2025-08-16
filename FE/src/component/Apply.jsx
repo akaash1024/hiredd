@@ -59,7 +59,10 @@ export const SearchSection = () => {
           />
           <span className="search-icon">🔍</span>
         </div>
-        <div className="search-bar" style={{ flex: "1", display: "flex", justifyContent:"center" }}>
+        <div
+          className="search-bar"
+          style={{ flex: "1", display: "flex", justifyContent: "center" }}
+        >
           <button>Reset</button>
         </div>
       </div>
@@ -87,7 +90,7 @@ export const SearchSection = () => {
 
 // Apply Dashboard
 export const Apply = () => {
-  const [actionRender, setActionRender] = useState("vacancy"); // which section to show
+  const [actionRender, setActionRender] = useState("applied"); // which section to show
 
   return (
     <main id="main">
@@ -99,7 +102,7 @@ export const Apply = () => {
               <div className="hire-asideSection--children">
                 <h3 onClick={() => setActionRender("vacancy")}>Vacancy</h3>
                 <h3 onClick={() => setActionRender("applied")}>Applied</h3>
-                <h3 onClick={() => setActionRender("saved")}>Saved</h3>
+                {/* <h3 onClick={() => setActionRender("saved")}>Saved</h3> */}
               </div>
             </div>
 

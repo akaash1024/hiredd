@@ -1,4 +1,6 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchJobs } from "../../features/jobs/jobSlice";
 
 const Card = ({ info }) => {
   return (
@@ -13,17 +15,15 @@ const Card = ({ info }) => {
         <span className="job-type">Type: {info.jobType}</span>
         <span className="job-status">Status: {info.status}</span>
       </div>
-
-      <div className="posted-by">
-        <small>
-          Posted by: {info.createdBy.name} ({info.createdBy.email})
-        </small>
-      </div>
     </div>
   );
 };
 
 export const Saved = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchJobs());
+  }, []);
   const { jobs } = useSelector((state) => state.jobs);
   return (
     <div className="hire-mainSection--container grid grid_Col_Four">

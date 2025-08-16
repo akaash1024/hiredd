@@ -2,15 +2,18 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { api } from "../../api/axios";
 
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
-    const {data} = await api.get("/api/job")
-    console.log(`logged form slice`, data.jobs);
+    const { data } = await api.get("/api/job")
     return data.jobs
+})
+
+export const fetchAppliedJobs = createAsyncThunk("jobs/fetchAppliedJobs", async () => {
+    const { data } = await api.get("/api/application/me")
+    return data.applications
+
 })
 
 export const addJob = createAsyncThunk("jobs/addJob", async (jobData) => {
     const { data } = await api.post("/jobs", jobData)
-    
-    
     return data.jobs
 })
 
@@ -25,6 +28,24 @@ const jobSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            // Fetch applied jobs
+            .addCase(fetchAppliedJobs.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(fetchAppliedJobs.fulfilled, (state, action) => {
+                console.log(`From Slice`, action.payload);
+                
+                state.status = "succeeded";
+                state.jobs = action.payload;
+                console.log(state.jobs, "state has been updated");
+                console.log(state.status, "state has been updated");
+                
+            })
+            .addCase(fetchAppliedJobs.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.error.message;
+            })
+            
             // fetchJobs
             .addCase(fetchJobs.pending, (state) => {
                 state.status = "loading"
@@ -33,7 +54,7 @@ const jobSlice = createSlice({
                 state.status = "succeeded"
                 state.jobs = action.payload
                 console.log(`is added to jobstate?`, state.jobs);
-                
+
             })
             .addCase(fetchJobs.rejected, (state, action) => {
                 state.status = "failed"

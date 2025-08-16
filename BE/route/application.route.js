@@ -4,6 +4,8 @@ const isAuthenticated = require("../middleware/isAuthenicated.middleware")
 
 applicationRoute.route("/").post(isAuthenticated, applicationController.applyJob)
 applicationRoute.route("/me").get(isAuthenticated, applicationController.getMyApplications)
+
+
 applicationRoute.route("/:jobId").get(isAuthenticated, applicationController.getJobApplications)
 
 
