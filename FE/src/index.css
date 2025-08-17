@@ -600,7 +600,7 @@ textarea.error {
   /* grid-template-rows: auto 1fr 1fr; First row for heading, rest for content */
   background-color: #e5e7eb;
   min-height: 100vh;
-  max-width: 140rem; /* fixed typo */
+  max-width: 140rem; 
 }
 
 .asideSection {
