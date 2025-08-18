@@ -38,7 +38,7 @@ const Card = ({ info }) => {
 export const Vacancy = () => {
   const dispatch = useDispatch();
   const { jobs, status, error } = useSelector((state) => state.jobs);
-  const { filteredResultsList } = useAuth();
+  const { currentVacantJobs } = useAuth();
 
   useEffect(() => {
     dispatch(fetchJobs());
@@ -58,7 +58,7 @@ export const Vacancy = () => {
 
   return (
     <div className="hire-mainSection--container grid grid_Col_Four">
-      {filteredResultsList.map((job) => (
+      {currentVacantJobs.map((job) => (
         <Card key={job._id} info={job} />
       ))}
     </div>

@@ -10,6 +10,7 @@ export const SearchFilter = () => {
     setCurrentPage,
     filters,
     setFilters,
+    resetFilters,
   } = useAuth();
 
   const handleSortChange = (field) => {
@@ -124,9 +125,9 @@ export const SearchFilter = () => {
               ))}
             </select>
           </div>
-          
+
           <div style={{ flex: "1" }}>
-            <button>Reset</button>
+            <button onClick={resetFilters}>Reset</button>
           </div>
         </div>
       </div>

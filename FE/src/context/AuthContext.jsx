@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [filters, setFilters] = useState({
     skill: "",
     location: "",
@@ -36,9 +37,9 @@ export const AuthProvider = ({ children }) => {
 
       const matchSearchBySkill =
         filters.skill === "" ||
-        job.skills
-          .map((s) => s.toLowerCase())
-          .includes(filters.skill.toLowerCase());
+        job.skills.some((s) =>
+          s.toLowerCase().includes(filters.skill.toLowerCase())
+        );
 
       const matchLocationBySelect =
         filters.location === "" ||
@@ -70,6 +71,23 @@ export const AuthProvider = ({ children }) => {
     return filteredResults;
   }, [jobs, searchTerm, filters, sortBy]);
 
+  // resetForm
+  const resetFilters = () => {
+    console.log("clicked");
+    
+    setSearchTerm("");
+    setFilters({ skill: "", location: "", title: "" });
+    setSortBy({ field: "company", direction: "asc" });
+    setCurrentPage(1);
+  };
+
+  /* paginationn*/
+
+  const totalPages = Math.ceil(filteredResultsList.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentVacantJobs = filteredResultsList.slice(startIndex, endIndex);
+
   let value = {
     api,
     user,
@@ -84,6 +102,13 @@ export const AuthProvider = ({ children }) => {
     filteredResultsList,
     // LogoutUser,
     // userAuthentication,
+    currentPage,
+    setCurrentPage,
+    itemsPerPage,
+    setItemsPerPage,
+    currentVacantJobs,
+    totalPages,
+    resetFilters,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

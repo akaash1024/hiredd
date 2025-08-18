@@ -1,0 +1,32 @@
+
+
+
+- axios / fetch
+deboucing / throlling
+table and set data
+call apply bind
+
+search, filter
+sorting
+pagination  / item per page selection
+edit/ delete/add
+reduxs
+custom hook
+
+
+//day
+evening sesssion
+need assessment 
+
+
+// pending task 
+🔴AI integration - job recommedation
+pagination 
+sidemenu edit action - backend callinng 
+
+reset - backend callinng 
+loadinng state - maybe in future 
+
+-- protection routes are pending done when above task will finish adn res as expected. 
+
+// responsive  layout 

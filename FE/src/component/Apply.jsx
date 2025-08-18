@@ -5,6 +5,7 @@ import { Applied } from "./applyComponent/Applied";
 import { Saved } from "./applyComponent/Saved";
 import { useAuth } from "../context/AuthContext";
 import { SearchFilter } from "./SearchFilter";
+import { Pagination } from "./applyComponent/Pagination";
 
 // Logged-in user info
 const LoggedInUserInfo = () => {
@@ -22,76 +23,8 @@ const LoggedInUserInfo = () => {
       </div>
       <div className="user-details">
         <h2>{name}</h2>
-        {headline && <h4>{headline}</h4>}
-        {location && <h4>{location}</h4>}
-      </div>
-    </div>
-  );
-};
-
-// Search & filter section
-export const SearchSection = () => {
-  const { searchTerm, setSearchTerm, showFilters, setShowFilters } = useAuth();
-  return (
-    <div
-      className="search-section"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        // border: "1px solid red",
-      }}
-    >
-      <div
-        className="form-group-inline"
-        style={{
-          display: "flex",
-          width: "100%",
-          // border: "1px solid red",
-          justifyContent: "space-between",
-        }}
-      >
-        <div className="search-bar" style={{ flex: "4" }}>
-          <input
-            type="text"
-            placeholder="Search by Company name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-          <span className="search-icon">🔍</span>
-        </div>
-        <div
-          className="search-bar"
-          style={{ flex: "1", display: "flex", justifyContent: "center" }}
-        >
-          <button>Reset</button>
-        </div>
-      </div>
-
-      <div
-        className="advance-search-bar"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          gap: "2rem",
-        }}
-      >
-        <div style={{ display: "flex", gap: "3rem", width: "70%" }}>
-          <div style={{ flex: "3" }}>
-            <input type="text" placeholder="Search by skill" />
-          </div>
-          <div style={{ flex: "1" }}>
-            <select name="" id="">
-              <option value="">Location</option>
-            </select>
-          </div>
-          <div style={{ flex: "1" }}>
-            <select name="" id="">
-              <option value="">Job title</option>
-            </select>
-          </div>
-        </div>
+        {headline && <h4>💼{headline}</h4>}
+        {location && <h4>📍{location}</h4>}
       </div>
     </div>
   );
@@ -125,6 +58,8 @@ export const Apply = () => {
 
             {/* Main Content */}
             <div className="hire-mainSection">
+              <Pagination />
+
               {actionRender === "vacancy" && <Vacancy />}
               {actionRender === "applied" && <Applied />}
               {actionRender === "saved" && <Saved />}

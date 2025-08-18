@@ -1,4 +1,4 @@
-import { SearchSection } from "../component/Apply";
+
 
 export const JobPortalDashboard = () => {
   return (
@@ -13,7 +13,7 @@ export const JobPortalDashboard = () => {
         </h4>
 
         
-          <SearchSection />
+          
         
 
         <div style={{maxWidthy:"140rem" }}>
