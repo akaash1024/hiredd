@@ -109,6 +109,32 @@ const logout = async (req, res) => {
     res.status(200).json({ success: true, message: "Logged out successfully" });
 }
 
+const updateUserDetails = async (req, res, next) => {
+    console.log("is this body", req.body);
+    
+    try {
+        const id = req.userId;
+        const updatedUserData = req.body;
+
+        const updatedData = await User.findByIdAndUpdate(id, updatedUserData, { new: true });
+
+        if (!updatedData) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "User updated successfully.",
+            updatedData,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+
+
 
 const user = async (req, res, next) => {
     try {
@@ -125,7 +151,7 @@ const user = async (req, res, next) => {
 }
 const getMySavedJobs = async (req, res, next) => {
     try {
-        const userId = req.user.id; 
+        const userId = req.user.id;
 
         const user = await User.findById(userId)
             .populate("savedJobs")
@@ -144,7 +170,6 @@ const getMySavedJobs = async (req, res, next) => {
         next(error);
     }
 };
-
 
 const saveJob = async (req, res, next) => {
     try {
@@ -183,4 +208,4 @@ const saveJob = async (req, res, next) => {
 
 
 
-module.exports = { register, login, user, logout, getAllUser, getMySavedJobs, saveJob }
+module.exports = { register, login, user, logout, getAllUser, getMySavedJobs, saveJob, updateUserDetails };

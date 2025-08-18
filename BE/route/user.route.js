@@ -21,15 +21,20 @@ userRoute.route("/register").post(upload.single("avatar"), userController.regist
 userRoute.route("/login").post(userController.login)
 userRoute.route("/logout").get(userController.logout) // ! maybe i kept it too post instead of get
 
-
 userRoute.route("/").get(userController.getAllUser)
 
 
 
 userRoute.route("/me").get(isAuthenticated, userController.user);
 
+userRoute.route("/update").patch(isAuthenticated, userController.updateUserDetails)
+
+
+
 userRoute.route("/save-job").post(isAuthenticated, userController.saveJob)
 userRoute.route("/me/saved").get(isAuthenticated, userController.getMySavedJobs);
+
+
 
 module.exports = userRoute
 
