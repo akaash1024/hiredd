@@ -43,13 +43,6 @@ const corsOptionsDelegate = (req, callback) => {
 };
 app.use(cors(corsOptionsDelegate));
 
-//
-
-app.use("/", (req, res) => {
-    console.log(res.body)
-    return res.status(200).json({ message: 'yes i m coming back form server' })
-})
-
 
 app.use("/api/auth", userRoute)
 app.use("/api/job", jobRoute)

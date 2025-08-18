@@ -9,7 +9,7 @@ export const Header = () => {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
-        setShowMenu(false); // close menu on Esc
+        setShowMenu(false); 
       }
     };
 
@@ -23,7 +23,7 @@ export const Header = () => {
         <div className="header-content">
           <div className="logo-section">
             <Link to="/">
-              <h1 className="logo">hiredd</h1>
+              <h1 className="logo">hiredd.</h1>
             </Link>
           </div>
 

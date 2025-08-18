@@ -10,7 +10,9 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { status, error, message } = useSelector((state) => state.users);
-
+  const handleGuestLogin = () => {
+    setFormData({ email: "ajit.morya@example.com", password: "ajit.morya" });
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -61,11 +63,15 @@ export const Login = () => {
             autoComplete="off"
           />
 
-          <button type="submit" disabled={status === "loading"}>
-            {status === "loading" ? "Logging in..." : "Login"}
-          </button>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <button type="submit" disabled={status === "loading"}>
+              {status === "loading" ? "Logging in..." : "Login"}
+            </button>
 
-          {error && <p className="error">{error}</p>}
+            <button onClick={handleGuestLogin}>Guest Login</button>
+          </div>
+
+          {/* {error && <p className="error">{error}</p>} */}
         </form>
       </div>
     </div>

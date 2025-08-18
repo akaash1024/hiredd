@@ -46,7 +46,7 @@ export const SearchSection = () => {
 };
 
 export const Hire = () => {
-  const [actionRender, setActionRender] = useState("jobs"); // store which component to render
+  const [actionRender, setActionRender] = useState("createJob"); // store which component to render
   const handleDashBoardRender = (section) => {
     setActionRender(section);
   }

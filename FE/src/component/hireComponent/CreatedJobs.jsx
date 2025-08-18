@@ -1,17 +1,22 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postJob } from "../../features/jobs/jobSlice";
+import { toast } from "react-toastify";
 
 export const CreateJob = () => {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    skills: "",
-    location: "",
-    salaryMin: "",
-    salaryMax: "",
-    company: "",
+    title: "akash",
+    description: "lorem lorem lorem lorem lorem",
+    skills: "python, js",
+    location: "Surat",
+    salaryMin: "50000",
+    salaryMax: "80000",
+    company: "Ascendum KPS",
     jobType: "Full-time",
     status: "Open",
   });
+  const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.jobs);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,20 +26,14 @@ export const CreateJob = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const payload = {
-      ...formData,
-      skills: formData.skills.split(",").map((s) => s.trim()),
-      salaryRange: {
-        min: Number(formData.salaryMin),
-        max: Number(formData.salaryMax),
-      },
-    };
-
-    console.log("Job Data:", payload);
-    // Call API here
+    try {
+      const result = await dispatch(postJob(formData)).unwrap();
+      toast.success(result.message);
+    } catch (error) {
+      toast.error(error.message || "Posting Job Failed");
+    }
   };
 
   return (
@@ -113,7 +112,7 @@ export const CreateJob = () => {
             required
           />
         </div>
-        
+
         <div className="form-group-inline">
           <div>
             <label>Salary Min</label>

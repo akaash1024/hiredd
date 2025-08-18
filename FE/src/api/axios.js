@@ -3,6 +3,7 @@ import axios from "axios";
 // Now this will work
 let API = import.meta.env.VITE_API_URL || "";
 API = `https://hiredd-vwh1.onrender.com`
+// API = `http://localhost:3000`
 
 
 export const api = axios.create({

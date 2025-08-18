@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { Login } from "../../pages/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { logoutUser } from "../../features/users/userSlice.js";
+import { logoutUser, updateUserData } from "../../features/users/userSlice.js";
 
 export const SideMenu = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
+  const [isEditing, setIsEditing] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,6 +40,7 @@ export const SideMenu = () => {
   }, [currentUser]);
 
   const handleValueChange = (e) => {
+    setIsEditing(true);
     const { name, value } = e.target;
 
     if (name.startsWith("profile.")) {
@@ -63,9 +66,16 @@ export const SideMenu = () => {
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(`changed`);
+  const handleFormSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const result = await dispatch(updateUserData(formData)).unwrap();
+      toast.success(result.message);
+    } catch (error) {
+      toast.error(error.message || "Updation failed");
+    } finally {
+      setIsEditing(false);
+    }
   };
 
   return (
@@ -99,7 +109,6 @@ export const SideMenu = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleValueChange}
-                    
                   />
                 </div>
 
@@ -168,7 +177,8 @@ export const SideMenu = () => {
                   />
                 </div>
 
-                <button type="submit">Edit</button>
+                <button type="submit" disabled={isEditing== false}>{isEditing ? "Save" : "Edit"}</button>
+                
               </form>
             </div>
           </section>

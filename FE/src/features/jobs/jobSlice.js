@@ -7,6 +7,16 @@ export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
 
     return data.jobs
 })
+export const applyJob = createAsyncThunk("jobs/applyJob", async (jobId, { rejectWithValue }) => {
+    try {
+        const { data } = await api.post("/api/application", { jobId });
+        console.log("applyJob response:", data);
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.response?.data || { message: "Job apply failed" });
+    }
+});
+
 
 export const fetchAppliedJobs = createAsyncThunk("jobs/fetchAppliedJobs", async () => {
     const { data } = await api.get("/api/application/me")
@@ -20,9 +30,9 @@ export const fetchSavedJobs = createAsyncThunk("jobs/fetchSavedJobs", async () =
 
 })
 
-export const addJob = createAsyncThunk("jobs/addJob", async (jobData) => {
-    const { data } = await api.post("/jobs", jobData)
-    return data.jobs
+export const postJob = createAsyncThunk("jobs/postJob", async (jobData) => {
+    const { data } = await api.post("/api/job", jobData)
+    return data
 })
 
 
@@ -37,6 +47,18 @@ const jobSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            // apply job
+            .addCase(applyJob.pending, (state, action) => {
+                state.status = "loading"
+            })
+            .addCase(applyJob.fulfilled, (state, action) => {
+                state.status = "succeeded"
+            })
+            .addCase(applyJob.rejected, (state, action) => {
+                state.status = "failed"
+                state.error = action.error.message;
+            })
+
             // fetch saved jobs
             .addCase(fetchSavedJobs.pending, (state, action) => {
                 state.status = "loading";
@@ -56,11 +78,10 @@ const jobSlice = createSlice({
             })
             .addCase(fetchAppliedJobs.fulfilled, (state, action) => {
                 console.log(`From Slice`, action.payload);
-
                 state.status = "succeeded";
                 state.jobs = action.payload;
-                console.log(state.jobs, "state has been updated");
-                console.log(state.status, "state has been updated");
+                // console.log(state.jobs, "state has been updated");
+                // console.log(state.status, "state has been updated");
 
             })
             .addCase(fetchAppliedJobs.rejected, (state, action) => {
@@ -82,15 +103,15 @@ const jobSlice = createSlice({
                 state.status = "failed"
                 state.error = action.error.message
             })
-            // addJob
-            .addCase(addJob.pending, (state) => {
+            // postJob
+            .addCase(postJob.pending, (state) => {
                 state.status = "loading"
             })
-            .addCase(addJob.fulfilled, (state, action) => {
+            .addCase(postJob.fulfilled, (state, action) => {
                 state.status = "succeeded"
-                state.jobs.push(action.payload)
+                state.jobs.push(action.payload.job)
             })
-            .addCase(addJob.rejected, (state, action) => {
+            .addCase(postJob.rejected, (state, action) => {
                 state.status = "failed"
                 state.error = action.error.message
             })

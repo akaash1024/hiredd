@@ -7,6 +7,8 @@ const User = require("../model/user.model");
 const applyJob = async (req, res, next) => {
     try {
         const { jobId } = req.body;
+        console.log(jobId);
+        
 
         // Check if job exists
         const job = await JobModel.findById(jobId);

@@ -14,6 +14,12 @@ reduxs
 custom hook
 
 
+//🔴NEED to work on HIRE component
+only hirer posted jobs 
++ how many application received
++ status
+
+
 //day
 evening sesssion
 need assessment 

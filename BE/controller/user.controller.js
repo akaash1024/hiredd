@@ -111,7 +111,7 @@ const logout = async (req, res) => {
 
 const updateUserDetails = async (req, res, next) => {
     console.log("is this body", req.body);
-    
+
     try {
         const id = req.userId;
         const updatedUserData = req.body;
@@ -125,7 +125,7 @@ const updateUserDetails = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "User updated successfully.",
-            updatedData,
+            updatedData: updatedData,
         });
     } catch (error) {
         next(error);

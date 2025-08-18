@@ -34,10 +34,14 @@ export const logoutUser = createAsyncThunk("users/logoutUser", async (_, { rejec
 
 export const updateUserData = createAsyncThunk("users/updateUserData", async (updatedData, { rejectWithValue }) => {
     try {
-        await api.post()
+        let { data } = await api.patch("/api/auth/update", updatedData)
+        console.log(data);
+        console.log(data.message);
+        return data
     } catch (error) {
-        return rejectWithValue(err.response?.data || { message: "User updation failed.. ." });
+        return rejectWithValue(error.response?.data || { message: "User updation failed.. ." });
     }
+
 })
 
 
@@ -53,6 +57,29 @@ const usersSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            // updateUserData
+            .addCase(updateUserData.pending, (state) => {
+                state.status = "loading";
+                state.error = null;
+            })
+            .addCase(updateUserData.fulfilled, (state, action) => {
+                state.status = "succeeded";
+
+                if (action.payload.updatedData) {
+                    state.currentUser = action.payload.updatedData;
+                } else {
+                    state.currentUser = state.currentUser;
+                }
+
+                state.message = action.payload.message || "User updated successfully";
+            })
+
+            .addCase(updateUserData.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.payload?.message || "User update failed";
+            })
+
+
             // fetchCurrentUser
             .addCase(fetchCurrentUser.pending, (state) => {
                 state.status = "loading";
