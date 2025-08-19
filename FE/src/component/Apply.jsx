@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Vacancy } from "./applyComponent/Vacancy";
 import { Applied } from "./applyComponent/Applied";
 import { Saved } from "./applyComponent/Saved";
-import { useAuth } from "../context/AuthContext";
+
 import { SearchFilter } from "./SearchFilter";
 import { Pagination } from "./applyComponent/Pagination";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Logged-in user info
 const LoggedInUserInfo = () => {
   const { currentUser } = useSelector((state) => state.users);
 
+
   const handleAvatarUpdate = () => {
     //
-  }
+  };
 
   if (!currentUser) return <h2>Loading user info...</h2>;
 

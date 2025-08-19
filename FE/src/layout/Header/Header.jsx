@@ -31,18 +31,20 @@ export const Header = () => {
           </div>
 
           <div>
-            {currentUser?.role == "hirer" ? (
-              <NavLink to="/hire">
+            {currentUser?.role && (
+              <NavLink to={currentUser.role === "hirer" ? "/hire" : "/apply"}>
                 <div style={{ display: "flex", gap: ".5rem" }}>
-                  <h4>Hire</h4>
-                  <img src="/users.svg" alt="hire-icon" />
-                </div>
-              </NavLink>
-            ) : (
-              <NavLink to="/apply">
-                <div style={{ display: "flex", gap: ".5rem" }}>
-                  <img src="./briefcase.svg" alt="apply-icon" />
-                  <h4>Apply</h4>
+                  {currentUser.role === "hirer" ? (
+                    <>
+                      <h4>Hire</h4>
+                      <img src="/users.svg" alt="hire-icon" />
+                    </>
+                  ) : (
+                    <>
+                      <img src="/briefcase.svg" alt="apply-icon" />
+                      <h4>Apply</h4>
+                    </>
+                  )}
                 </div>
               </NavLink>
             )}

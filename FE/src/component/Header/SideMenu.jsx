@@ -4,6 +4,7 @@ import { Login } from "../../pages/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { logoutUser, updateUserData } from "../../features/users/userSlice.js";
+import { useNavigate } from "react-router-dom";
 
 export const SideMenu = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
@@ -22,6 +23,7 @@ export const SideMenu = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
@@ -58,11 +60,15 @@ export const SideMenu = () => {
   };
 
   const handleLogout = async () => {
+    
     try {
       const result = await dispatch(logoutUser()).unwrap();
       toast.success(result.message);
+      
     } catch (err) {
       toast.error(err.message || "Login failed");
+    } finally {
+      navigate("/");
     }
   };
 
@@ -185,7 +191,10 @@ export const SideMenu = () => {
               </div>
             </section>
           )}
-          <div className="card job-card" style={{margin: "2rem", width:"46.5rem"}}>
+          <div
+            className="card job-card"
+            style={{ margin: "2rem", width: "46.5rem" }}
+          >
             <h5>Actively Updating (pending)</h5>
             <ul>
               <li>- Profile Update</li>

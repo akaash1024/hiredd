@@ -78,9 +78,6 @@ export const ListedJobs = () => {
                   onChange={(e) => handleStatusChange(job._id, e.target.value)}
                 >
                   <option value="Open">Open</option>
-                  <option value="viewed">Viewed</option>
-                  <option value="viewed">Shortlisted</option>
-                  <option value="viewed">Interviewed</option>
                   <option value="Closed">Closed</option>
                 </select>
               </td>

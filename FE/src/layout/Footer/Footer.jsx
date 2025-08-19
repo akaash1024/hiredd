@@ -22,17 +22,17 @@ export const Footer = () => {
             <ul>
               <li>Job Search & Filters</li>
               <li>Company Profiles</li>
-              <li>Resume Upload</li>
-              <li>Interview Preparation</li>
+              
+              <li>Real Time Update</li>
             </ul>
           </div>
 
           {/* Contact Section */}
           <div className="footer-section">
             <h4>Contact</h4>
-            <p>For support or inquiries:</p>
-            <p>Email: support@jobportal.com</p>
-            <p>Phone: +91 98765 43210</p>
+            <p>Lets connect:</p>
+            <p>Email: akashkewat99@gmail.com</p>
+            <p>Phone: +91 960 104-(6613)</p>
           </div>
         </div>
 

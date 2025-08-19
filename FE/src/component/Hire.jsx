@@ -4,12 +4,12 @@ import { CreateJob } from "./hireComponent/CreatedJobs";
 import { Candidates } from "./hireComponent/Candidates";
 import { useSelector } from "react-redux";
 import { ListedJobs } from "./hireComponent/ListedJobs";
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoggedInUserInfo = () => {
   const { currentUser } = useSelector((state) => state.users);
-
-  if (!currentUser) return <h2>Loading user info...</h2>;
+  
 
   const { name, avatar, profile } = currentUser;
   const { headline, location } = profile || {};

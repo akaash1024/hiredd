@@ -12,11 +12,7 @@ export const JobPortalDashboard = () => {
           Connect with top companies and kickstart your career
         </h4>
 
-        
-          
-        
-
-        <div style={{maxWidthy:"140rem" }}>
+        <div style={{ maxWidthy: "140rem" }}>
           <img
             className="hero-image"
             src="https://raw.githubusercontent.com/piyush-eon/job-portal/refs/heads/master/public/banner.jpeg"
@@ -33,7 +29,7 @@ export const JobPortalDashboard = () => {
         </h2>
         <div className="feature-images">
           <img
-            src="https://images.unsplash.com/photo-1560264418-0d7c6b9e7c91?auto=format&fit=crop&w=1000&q=80"
+            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="feature"
           />
         </div>
