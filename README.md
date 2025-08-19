@@ -36,7 +36,7 @@ A comprehensive full-stack job portal application built with the MERN stack, con
 ### Technical Features
 - 🔐 **Role-Based Access Control** - Different permissions for job seekers and recruiters
 - ☁️ **Cloud Storage** - Cloudinary integration for profile image uploads
-- 📱 **Responsive Design** - Mobile-friendly interface
+- 📱 **Responsive Design** - Mobile-friendly interface // might be differ *Currently WIP
 - 🛡️ **Security** - Secure authentication with httpOnly cookies
 - 🚀 **Production Ready** - Deployed on Render (backend) and Vercel (frontend)
 
