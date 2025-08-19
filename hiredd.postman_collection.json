@@ -1,0 +1,546 @@
+{
+	"info": {
+		"_postman_id": "706aa049-8fda-4bc5-bc78-8ff0f458f330",
+		"name": "hiredd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37564071",
+		"_collection_link": "https://logn99.postman.co/workspace/Team-Workspace~9513deb8-6687-4d45-8b94-9cd7517f5271/collection/37564071-706aa049-8fda-4bc5-bc78-8ff0f458f330?action=share&source=collection_link&creator=37564071"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Akash Kevat",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "akash.kevat@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "akash.kevat",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "postman-cloud:///1f0752ce-2c7a-4170-aa27-a86bfb392f59"
+								},
+								{
+									"key": "profile[resumeUrl]",
+									"value": "https://example.com/riya.sharma.pdf",
+									"type": "text"
+								},
+								{
+									"key": "profile[headline]",
+									"value": "Full Stack Developer",
+									"type": "text"
+								},
+								{
+									"key": "profile[skills]",
+									"value": "JavaScript",
+									"type": "text"
+								},
+								{
+									"key": "profile[skills]",
+									"value": "React",
+									"type": "text"
+								},
+								{
+									"key": "profile[location]",
+									"value": "Ahmedabad",
+									"type": "text"
+								},
+								{
+									"key": "profile[bio]",
+									"value": "Full Stack Web Developer | MERN Stack | JavaScript | React | Redux Toolkit | Node.js | MongoDB | DSA Enthusiast | Ex-Ascendum, Vertafore",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{auth}}/register",
+							"host": [
+								"{{auth}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"meena.kevat@example.com\",\r\n    \"password\":\"meena.kevat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{auth}}/login",
+							"host": [
+								"{{auth}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"akash.kevat@example.com\",\r\n    \"password\": \"akash.kevat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{auth}}/logout",
+							"host": [
+								"{{auth}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Saving Job",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ajit.morya@example.com\",\r\n    \"password\":\"ajit.morya\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{auth}}/login",
+							"host": [
+								"{{auth}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getting Saved Job",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobId\": \"68a01140506c744e8f51fe11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{auth}}/saved",
+							"host": [
+								"{{auth}}"
+							],
+							"path": [
+								"saved"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile[bio]",
+									"value": "TEST TEST TEST  TEST TEST TEST TEST TEST  TEST TEST",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{auth}}/update",
+							"host": [
+								"{{auth}}"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "job",
+			"item": [
+				{
+					"name": "create job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"DevOps Engineer\",\r\n    \"description\": \"Looking for a DevOps engineer to manage CI/CD pipelines, cloud infrastructure, and deployment automation.\",\r\n    \"skills\": [\"AWS\", \"Docker\", \"Kubernetes\", \"CI/CD\", \"Linux\", \"Jenkins\"],\r\n    \"location\": \"Ahmedabad, Gujarat\",\r\n    \"salaryRange\": { \"min\": 50000, \"max\": 80000 },\r\n    \"company\": \"CloudEdge Solutions\",\r\n    \"createdBy\": \"68a010cb506c744e8f51fe02\",\r\n    \"jobType\": \"Full-time\",\r\n    \"status\": \"Open\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job}}/",
+							"host": [
+								"{{job}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllJobs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jobs}}?page=1&limit=10",
+							"host": [
+								"{{jobs}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllJobsById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job}}/689c1fec88444e434bf77a42",
+							"host": [
+								"{{job}}"
+							],
+							"path": [
+								"689c1fec88444e434bf77a42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllListedJobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{jobs}}/listed-jobs",
+							"host": [
+								"{{jobs}}"
+							],
+							"path": [
+								"listed-jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateJobById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"title\": \"Frontend Developer\" \r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job}}/689c1fec88444e434bf77a42",
+							"host": [
+								"{{job}}"
+							],
+							"path": [
+								"689c1fec88444e434bf77a42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteJobById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"title\": \"Frontend Developer\" \r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job}}/689c1fec88444e434bf77a42",
+							"host": [
+								"{{job}}"
+							],
+							"path": [
+								"689c1fec88444e434bf77a42"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "application",
+			"item": [
+				{
+					"name": "applyingJobById",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"jobId\": \"68a3151d22f919431de26ac7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{application}}",
+							"host": [
+								"{{application}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMyAppliedJobsById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"jobId\": \"689c225addc2d4a417c7bad2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{application}}/me",
+							"host": [
+								"{{application}}"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "For Employer - getReceivedApplicationOfJobsById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"jobId\": \"689c225addc2d4a417c7bad2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{application}}/689c225addc2d4a417c7bad2",
+							"host": [
+								"{{application}}"
+							],
+							"path": [
+								"689c225addc2d4a417c7bad2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "getAll Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"akash.kevat@example.com\",\r\n    \"password\": \"akash.kevat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{auth}}/",
+							"host": [
+								"{{auth}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

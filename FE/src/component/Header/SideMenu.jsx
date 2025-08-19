@@ -191,16 +191,6 @@ export const SideMenu = () => {
               </div>
             </section>
           )}
-          <div
-            className="card job-card"
-            style={{ margin: "2rem", width: "46.5rem" }}
-          >
-            <h5>Actively Updating (pending)</h5>
-            <ul>
-              <li>- Profile Update</li>
-              <li>- AI Integration(recomendation -vacto)</li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
