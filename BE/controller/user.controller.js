@@ -134,6 +134,37 @@ const updateUserDetails = async (req, res, next) => {
 
 
 
+const updateAvatar = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const avatarLocalPath = req.file?.path;
+        if (!avatarLocalPath) {
+            return res.status(400).json({ message: "Avatar file is required" });
+        }
+
+        const avatar = await uploadOnCloudinary(avatarLocalPath);
+        if (!avatar) {
+            return res.status(500).json({ message: "Failed to upload avatar" });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            { avatar: avatar.url },
+            { new: true }
+        ).select("-password"); 
+
+        return res.json({
+            success: true,
+            message: "Profile photo updated",
+            user: updatedUser,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 
 
 const user = async (req, res, next) => {
@@ -208,4 +239,4 @@ const saveJob = async (req, res, next) => {
 
 
 
-module.exports = { register, login, user, logout, getAllUser, getMySavedJobs, saveJob, updateUserDetails };
+module.exports = { register, login, user, logout, getAllUser, getMySavedJobs, saveJob, updateUserDetails, updateAvatar };

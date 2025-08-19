@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAppliedJobs } from "../../features/jobs/jobSlice";
 import { useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 const Card = ({ info }) => {
   if (!info) return null;
@@ -15,7 +16,7 @@ const Card = ({ info }) => {
         </div>
         <div className="form-group">
           <span className="job-type">Type: {info.jobType}</span>
-          <span className="job-status">Status: {info.status}</span>
+
           <div className="btn" style={{ height: ".1rem", width: "8rem" }}>
             <button
               style={{
@@ -32,17 +33,25 @@ const Card = ({ info }) => {
         </div>
       </div>
 
-      <p className="job-description">{info.description}</p>
+      <div style={{ width: "7rem" }}>
+        <h3
+          className="job-status"
+          style={{ color: info.status === "Open" ? "green" : "red" }}
+        >
+          Status: {info.status}
+        </h3>
+      </div>
     </div>
   );
 };
 
 export const Applied = () => {
   const dispatch = useDispatch();
+  const { currentPage, itemsPerPage } = useAuth();
   const { jobs, status, error } = useSelector((state) => state.jobs);
 
   useEffect(() => {
-    dispatch(fetchAppliedJobs());
+    dispatch(fetchAppliedJobs(currentPage, itemsPerPage));
   }, [dispatch]);
 
   if (status === "loading") {

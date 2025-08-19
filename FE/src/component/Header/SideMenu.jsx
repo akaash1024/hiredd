@@ -79,110 +79,120 @@ export const SideMenu = () => {
   };
 
   return (
-    <div className="form-overlay">
-      <div className="form-container">
-        <section
-          className="section section-1"
-          style={{
-            height: "7.2rem",
-            background:
-              "linear-gradient(135deg,var(--btn-color) 0%,var(--btn-hover) 100%)",
-          }}
-        ></section>
-
-        {currentUser && <button onClick={handleLogout}>Logout</button>}
-        {!currentUser ? (
-          <Login />
-        ) : (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className="form-overlay">
+        <div className="form-container">
           <section
             className="section section-1"
-            style={{ padding: "1rem", backgroundColor: "#f5f5f5" }}
-          >
-            <div className="user-profile">
-              <form onSubmit={handleFormSubmit}>
-                {/* Top-level fields */}
-                <div>
-                  <label htmlFor="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleValueChange}
-                  />
-                </div>
+            style={{
+              height: "7.2rem",
+              background:
+                "linear-gradient(135deg,var(--btn-color) 0%,var(--btn-hover) 100%)",
+            }}
+          ></section>
 
-                <div>
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleValueChange}
-                  />
-                </div>
+          {currentUser && <button onClick={handleLogout}>Logout</button>}
+          {!currentUser ? (
+            <Login />
+          ) : (
+            <section
+              className="section section-1"
+              style={{ padding: "1rem", backgroundColor: "#f5f5f5" }}
+            >
+              <div className="user-profile">
+                <form onSubmit={handleFormSubmit}>
+                  {/* Top-level fields */}
+                  <div>
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleValueChange}
+                    />
+                  </div>
 
-                <div>
-                  <label htmlFor="headline">Headline</label>
-                  <input
-                    type="text"
-                    id="headline"
-                    name="profile.headline"
-                    value={formData.profile?.headline}
-                    onChange={handleValueChange}
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleValueChange}
+                    />
+                  </div>
 
-                <div>
-                  <label htmlFor="location">Location</label>
-                  <input
-                    type="text"
-                    id="location"
-                    name="profile.location"
-                    value={formData.profile?.location}
-                    onChange={handleValueChange}
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="headline">Headline</label>
+                    <input
+                      type="text"
+                      id="headline"
+                      name="profile.headline"
+                      value={formData.profile?.headline}
+                      onChange={handleValueChange}
+                    />
+                  </div>
 
-                <div>
-                  <label htmlFor="skills">Skills</label>
-                  <input
-                    type="text"
-                    id="skills"
-                    name="profile.skills"
-                    value={formData.profile?.skills}
-                    onChange={handleValueChange}
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="location">Location</label>
+                    <input
+                      type="text"
+                      id="location"
+                      name="profile.location"
+                      value={formData.profile?.location}
+                      onChange={handleValueChange}
+                    />
+                  </div>
 
-                <div>
-                  <label htmlFor="resumeUrl">Resume URL</label>
-                  <input
-                    type="text"
-                    id="resumeUrl"
-                    name="profile.resumeUrl"
-                    value={formData.profile?.resumeUrl}
-                    onChange={handleValueChange}
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="skills">Skills</label>
+                    <input
+                      type="text"
+                      id="skills"
+                      name="profile.skills"
+                      value={formData.profile?.skills}
+                      onChange={handleValueChange}
+                    />
+                  </div>
 
-                <div className="full-width">
-                  <label htmlFor="bio">Bio</label>
-                  <textarea
-                    id="bio"
-                    name="profile.bio"
-                    value={formData.profile?.bio}
-                    onChange={handleValueChange}
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="resumeUrl">Resume URL</label>
+                    <input
+                      type="text"
+                      id="resumeUrl"
+                      name="profile.resumeUrl"
+                      value={formData.profile?.resumeUrl}
+                      onChange={handleValueChange}
+                    />
+                  </div>
 
-                <button type="submit" disabled={isEditing== false}>{isEditing ? "Save" : "Edit"}</button>
-                
-              </form>
-            </div>
-          </section>
-        )}
+                  <div className="full-width">
+                    <label htmlFor="bio">Bio</label>
+                    <textarea
+                      id="bio"
+                      name="profile.bio"
+                      value={formData.profile?.bio}
+                      onChange={handleValueChange}
+                    />
+                  </div>
+
+                  <button type="submit" disabled={isEditing == false}>
+                    {isEditing ? "Save" : "Edit"}
+                  </button>
+                </form>
+              </div>
+            </section>
+          )}
+          <div className="card job-card" style={{margin: "2rem", width:"46.5rem"}}>
+            <h5>Actively Updating (pending)</h5>
+            <ul>
+              <li>- Profile Update</li>
+              <li>- AI Integration(recomendation -vacto)</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

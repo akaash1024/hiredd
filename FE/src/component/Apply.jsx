@@ -11,6 +11,10 @@ import { Pagination } from "./applyComponent/Pagination";
 const LoggedInUserInfo = () => {
   const { currentUser } = useSelector((state) => state.users);
 
+  const handleAvatarUpdate = () => {
+    //
+  }
+
   if (!currentUser) return <h2>Loading user info...</h2>;
 
   const { name, avatar, profile } = currentUser;
@@ -18,19 +22,17 @@ const LoggedInUserInfo = () => {
 
   return (
     <div className="user-info">
-      <div className="img-section">
-        <img src={avatar} alt={name} />
+      <div className="img-section" onClick={handleAvatarUpdate}>
+        <img className="avatar" src={avatar} alt={name} />
       </div>
       <div className="user-details">
         <h2>{name}</h2>
-        {headline && <h4>💼{headline}</h4>}
-        {location && <h4>📍{location}</h4>}
+        {headline && <h4>💼 {headline}</h4>}
+        {location && <h4>📍 {location}</h4>}
       </div>
     </div>
   );
 };
-
-
 
 // Apply Dashboard
 export const Apply = () => {

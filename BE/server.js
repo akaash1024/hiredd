@@ -8,8 +8,9 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 
-const jobRoute = require("./route/job.route")
+
 const applicationRoute = require("./route/application.route")
+const jobsRoute = require("./route/job.route")
 
 
 const app = express()
@@ -45,7 +46,7 @@ app.use(cors(corsOptionsDelegate));
 
 
 app.use("/api/auth", userRoute)
-app.use("/api/job", jobRoute)
+app.use("/api/jobs", jobsRoute)
 app.use("/api/application", applicationRoute)
 
 // app.use("/", (req, res) => res.status(200).json({ message: 'done' }))

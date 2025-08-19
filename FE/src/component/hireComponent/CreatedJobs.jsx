@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export const CreateJob = () => {
   const [formData, setFormData] = useState({
     title: "akash",
-    description: "lorem lorem lorem lorem lorem",
+    description: "test test test test test test test test",
     skills: "python, js",
     location: "Surat",
     salaryMin: "50000",
@@ -14,6 +14,7 @@ export const CreateJob = () => {
     company: "Ascendum KPS",
     jobType: "Full-time",
     status: "Open",
+    resumeUrl: "https://example.com/resume.pdf",
   });
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.jobs);
@@ -33,6 +34,19 @@ export const CreateJob = () => {
       toast.success(result.message);
     } catch (error) {
       toast.error(error.message || "Posting Job Failed");
+    } finally {
+      setFormData({
+        title: "",
+        description: "",
+        skills: "",
+        location: "",
+        salaryMin: "",
+        salaryMax: "",
+        company: "",
+        jobType: "",
+        status: "",
+        resumeUrl: "",
+      });
     }
   };
 
@@ -100,6 +114,7 @@ export const CreateJob = () => {
           required
         ></textarea>
       </div>
+
       <div className="form-group-inline">
         <div className="form-group">
           <label>Required Skills (comma separated)</label>

@@ -21,6 +21,11 @@ export const SearchFilter = () => {
     }));
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1);
+  };
+
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
@@ -57,7 +62,7 @@ export const SearchFilter = () => {
             type="text"
             placeholder="Search by Company name..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearchChange}
             className="search-input"
           />
           <span className="search-icon">🔍</span>

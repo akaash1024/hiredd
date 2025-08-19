@@ -24,6 +24,7 @@ userRoute.route("/logout").get(userController.logout) // ! maybe i kept it too p
 userRoute.route("/").get(userController.getAllUser)
 
 
+userRoute.route("/update-avatar/:id").put(upload.single("avatar"), userController.updateAvatar);
 
 userRoute.route("/me").get(isAuthenticated, userController.user);
 

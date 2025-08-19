@@ -3,6 +3,7 @@ import { api } from "../api/axios";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "../features/jobs/jobSlice";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext(null);
 
@@ -26,10 +27,12 @@ export const AuthProvider = ({ children }) => {
   const { jobs, status, error } = useSelector((state) => state.jobs);
 
   useEffect(() => {
-    dispatch(fetchJobs());
+    const result = dispatch(fetchJobs(currentPage, itemsPerPage));
+    toast.success(result.message)
   }, [dispatch]);
 
   const filteredResultsList = useMemo(() => {
+    /**/ 
     const filteredResults = jobs.filter((job) => {
       const matchSearchByCompany =
         searchTerm === "" ||

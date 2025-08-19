@@ -5,12 +5,11 @@ import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 
 const Card = ({ info }) => {
+  const { currentPage, itemsPerPage } = useAuth();
   const dispatch = useDispatch();
-
   const handleJobApply = async (jobId) => {
     try {
       const result = await dispatch(applyJob(jobId)).unwrap();
-      console.log("vacany jsx", result);
       toast.success(result.message);
     } catch (error) {
       toast.error(error.message || "Job Applying failed");
@@ -19,10 +18,14 @@ const Card = ({ info }) => {
 
   
 
-  const handleJobSave = (e) => {
-    try {
-    } catch (error) {}
+  const handleJobSave = async (jobId) => {
+    // handle later
   };
+
+  const handleJobWithdraw = async (jobId) => {
+    // handle later
+  };
+
   return (
     <div className="card job-card">
       <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -33,7 +36,6 @@ const Card = ({ info }) => {
         </div>
         <div className="form-group">
           <span className="job-type">Type: {info.jobType}</span>
-          <span className="job-status">Status: {info.status}</span>
           <div
             className="btn"
             style={{
@@ -43,29 +45,48 @@ const Card = ({ info }) => {
               gap: ".2rem",
             }}
           >
-            <button
-              style={{
-                height: "100%",
-                width: "100%",
-                fontSize: "1rem",
-                borderRadius: "10%",
-                backgroundColor: "var(--accent-color)",
-              }}
-              onClick={() => handleJobApply(info._id)}
-            >
-              Apply
-            </button>
-            <button
-              style={{
-                height: "100%",
-                width: "100%",
-                fontSize: "1rem",
-                borderRadius: "10%",
-              }}
-              onClick={() => handleJobSave(info._id)}
-            >
-              Save
-            </button>
+            {!info.applied ? (
+              <div style={{display:"flex", flexDirection:"column", gap:".5rem"}}>
+                <button
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    fontSize: "1rem",
+                    borderRadius: "10%",
+                    backgroundColor: "var(--accent-color)",
+                  }}
+                  onClick={() => handleJobApply(info._id)}
+                >
+                  Apply
+                </button>
+                <button
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    fontSize: "1rem",
+                    borderRadius: "10%",
+                  }}
+                  onClick={() => handleJobSave(info._id)}
+                >
+                  Save
+                </button>
+              </div>
+            ) : (
+              <div className="btn" style={{ height: ".1rem", width: "8rem" }}>
+                <button
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    fontSize: "1rem",
+                    borderRadius: "10%",
+                    backgroundColor: "var(--error-color)",
+                  }}
+                  onClick={() => handleJobWithdraw(info._id)}
+                >
+                  Withdraw
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -78,10 +99,10 @@ const Card = ({ info }) => {
 export const Vacancy = () => {
   const dispatch = useDispatch();
   const { jobs, status, error } = useSelector((state) => state.jobs);
-  const { currentVacantJobs } = useAuth();
+  const { currentVacantJobs, currentPage, itemsPerPage } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchJobs());
+    dispatch(fetchJobs(currentPage, itemsPerPage));
   }, [dispatch]);
 
   if (status === "loading") {

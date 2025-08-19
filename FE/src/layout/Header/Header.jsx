@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import { SideMenu } from "../../component/Header/SideMenu";
 import "./header.css";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [showmenu, setShowMenu] = useState(false);
+  const { currentUser } = useSelector((state) => state.users);
+  console.log(currentUser?.role);
 
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
-        setShowMenu(false); 
+        setShowMenu(false);
       }
     };
 
@@ -27,19 +30,22 @@ export const Header = () => {
             </Link>
           </div>
 
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <NavLink to="/apply">
-              <div style={{ display: "flex", gap: ".5rem" }}>
-                <img src="./briefcase.svg" alt="apply-icon" />
-                <h4>Apply</h4>
-              </div>
-            </NavLink>
-            <NavLink to="/hire">
-              <div style={{ display: "flex", gap: ".5rem" }}>
-                <h4>Hire</h4>
-                <img src="/users.svg" alt="hire-icon" />
-              </div>
-            </NavLink>
+          <div>
+            {currentUser?.role == "hirer" ? (
+              <NavLink to="/hire">
+                <div style={{ display: "flex", gap: ".5rem" }}>
+                  <h4>Hire</h4>
+                  <img src="/users.svg" alt="hire-icon" />
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/apply">
+                <div style={{ display: "flex", gap: ".5rem" }}>
+                  <img src="./briefcase.svg" alt="apply-icon" />
+                  <h4>Apply</h4>
+                </div>
+              </NavLink>
+            )}
           </div>
 
           <div className="header-actions">

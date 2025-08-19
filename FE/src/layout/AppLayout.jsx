@@ -4,7 +4,7 @@ import { Header } from "./Header/Header";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "../features/users/userSlice";
-import { fetchJobs } from "../features/jobs/jobSlice";
+
 
 export const AppLayout = () => {
   const dispatch = useDispatch();

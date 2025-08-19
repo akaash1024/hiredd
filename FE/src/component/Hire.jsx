@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import {  CreateJob } from "./hireComponent/CreatedJobs";
+import { CreateJob } from "./hireComponent/CreatedJobs";
 import { Candidates } from "./hireComponent/Candidates";
 import { useSelector } from "react-redux";
-import { Jobs } from "./hireComponent/Jobs";
-import { useAuth } from "../context/AuthContext";
+import { ListedJobs } from "./hireComponent/ListedJobs";
+
 
 const LoggedInUserInfo = () => {
   const { currentUser } = useSelector((state) => state.users);
@@ -27,6 +27,8 @@ const LoggedInUserInfo = () => {
     </div>
   );
 };
+
+/*
 export const SearchSection = () => {
   const { searchTerm, setSearchTerm, showFilters, setShowFilters } = useAuth();
   return (
@@ -44,14 +46,13 @@ export const SearchSection = () => {
     </div>
   );
 };
+*/
 
 export const Hire = () => {
   const [actionRender, setActionRender] = useState("createJob"); // store which component to render
   const handleDashBoardRender = (section) => {
     setActionRender(section);
-  }
-
-  
+  };
 
   return (
     <main id="main">
@@ -64,7 +65,7 @@ export const Hire = () => {
                 <h3 onClick={() => handleDashBoardRender("createJob")}>
                   Create Job
                 </h3>
-                <h3 onClick={() => handleDashBoardRender("jobs")}>
+                <h3 onClick={() => handleDashBoardRender("listedJobs")}>
                   Listed Jobs
                 </h3>
                 <h3 onClick={() => handleDashBoardRender("candidates")}>
@@ -76,14 +77,13 @@ export const Hire = () => {
             {/* Header */}
             <div className="hire-headingSection">
               <LoggedInUserInfo />
-              <SearchSection />
-              
+              {/* <SearchSection /> */}
             </div>
 
             {/* Main Content */}
             <div className="hire-mainSection">
               {actionRender === "createJob" && <CreateJob />}
-              {actionRender === "jobs" && <Jobs />}
+              {actionRender === "listedJobs" && <ListedJobs />}
               {actionRender === "candidates" && <Candidates />}
             </div>
           </div>
