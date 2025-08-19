@@ -29,7 +29,7 @@ app.use(cors({
 // need to change from here
 // CORS configuration
 const whitelist = [process.env.FE_URL, process.env.DEPLOY_FE_URL];
-const corsOptionsDelegate = (req, callback) => {
+const corsOptions = (req, callback) => {
     const origin = req.header("Origin");
     if (whitelist.includes(origin) || !origin) {
         callback(null, {
@@ -42,7 +42,8 @@ const corsOptionsDelegate = (req, callback) => {
         callback(null, { origin: false });
     }
 };
-app.use(cors(corsOptionsDelegate));
+app.use(cors(corsOptions));
+
 
 
 app.use("/api/auth", userRoute)
