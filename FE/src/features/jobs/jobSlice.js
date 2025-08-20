@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { api } from "../../api/axios";
 
-export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async (page, itemsPerPage) => {
-    const { data } = await api.get(`/api/jobs?page=${page}&limit=${itemsPerPage}`)
+export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async ({currentPage, itemsPerPage}) => {
+    
+    const { data } = await api.get(`/api/jobs?page=${currentPage}&limit=${itemsPerPage}`)
     return data.jobs
 })
 

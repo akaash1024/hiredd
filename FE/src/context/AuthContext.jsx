@@ -26,10 +26,7 @@ export const AuthProvider = ({ children }) => {
   const dispatch = useDispatch();
   const { jobs, status, error } = useSelector((state) => state.jobs);
 
-  useEffect(() => {
-    const result = dispatch(fetchJobs(currentPage, itemsPerPage));
-    toast.success(result.message)
-  }, [dispatch]);
+
 
   const filteredResultsList = useMemo(() => {
     /**/ 

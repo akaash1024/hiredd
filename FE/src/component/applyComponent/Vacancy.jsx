@@ -102,7 +102,10 @@ export const Vacancy = () => {
   const { currentVacantJobs, currentPage, itemsPerPage } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchJobs(currentPage, itemsPerPage));
+    
+    console.log(itemsPerPage);
+    
+    dispatch(fetchJobs({ currentPage, itemsPerPage }));
   }, [dispatch]);
 
   if (status === "loading") {
