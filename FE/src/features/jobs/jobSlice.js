@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { api } from "../../api/axios";
 
-export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async ({currentPage, itemsPerPage}) => {
-    
-    const { data } = await api.get(`/api/jobs?page=${currentPage}&limit=${itemsPerPage}`)
+export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
+
+    const { data } = await api.get(`/api/jobs`)
     return data.jobs
 })
 
@@ -38,14 +38,19 @@ export const applyJob = createAsyncThunk("jobs/applyJob", async (jobId, { reject
     }
 });
 
-export const getListedJobs = createAsyncThunk("jobs/getListedJobs", async (_, { rejectWithValue }) => {
-    try {
-        const { data } = await api.get("/api/jobs/listed-jobs");
-        return data.listedJobs
-    } catch (error) {
-        return rejectWithValue(error.response?.data || { message: "Faile to get listed jobs" })
+export const getListedJobs = createAsyncThunk(
+    "jobs/getListedJobs",
+    async (_, { rejectWithValue }) => {
+        try {
+            const { data } = await api.get("/api/jobs/listed-jobs");
+            return data.listedJobs;
+        } catch (error) {
+            console.error("API error in getListedJobs:", error);
+            return rejectWithValue(error.response?.data || { message: "Failed to get listed jobs" });
+        }
     }
-})
+);
+
 
 export const updateJobStatus = createAsyncThunk("jobs/updateJobStatus", async ({ id, status }, { rejectWithValue }) => {
     try {

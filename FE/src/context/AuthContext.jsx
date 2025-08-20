@@ -2,8 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../api/axios";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchJobs } from "../features/jobs/jobSlice";
-import { toast } from "react-toastify";
+
+
 
 const AuthContext = createContext(null);
 

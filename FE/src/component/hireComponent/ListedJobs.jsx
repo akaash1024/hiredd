@@ -16,8 +16,8 @@ export const ListedJobs = () => {
       try {
         const result = await dispatch(getListedJobs()).unwrap();
         setListedJobs(result);
-      } catch (err) {
-        console.error("Failed to fetch jobs:", err);
+      } catch (error) {
+        console.error("Failed to fetch jobs:", error);
       }
     };
 

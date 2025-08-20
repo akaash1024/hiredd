@@ -105,7 +105,7 @@ export const Vacancy = () => {
     
     console.log(itemsPerPage);
     
-    dispatch(fetchJobs({ currentPage, itemsPerPage }));
+    dispatch(fetchJobs());
   }, [dispatch]);
 
   if (status === "loading") {

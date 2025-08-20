@@ -15,7 +15,7 @@ const createJob = async (req, res, next) => {
 
 const getJobsWithStatus = async (req, res, next) => {
     try {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 25 } = req.query;
         const skip = (page - 1) * parseInt(limit);
 
         // 1. Get paginated jobs
