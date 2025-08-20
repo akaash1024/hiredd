@@ -47,14 +47,38 @@ export const getListedJobs = createAsyncThunk("jobs/getListedJobs", async (_, { 
 })
 
 export const updateJobStatus = createAsyncThunk("jobs/updateJobStatus", async ({ id, status }, { rejectWithValue }) => {
+    try {
+        const { data } = await api.put(`/api/jobs/${id}/status`, { status });
+        return data;
+    } catch (err) {
+        return rejectWithValue(err.response?.data || { message: "Failed to update status" });
+    }
+});
+
+export const updateApplicationStatus = createAsyncThunk(
+    "jobs/updateApplicationStatus",
+    async ({ id, applicationStatus }, { rejectWithValue }) => {
         try {
-            const { data } = await api.put(`/api/jobs/${id}/status`, { status });
-            return data;
-        } catch (err) {
-            return rejectWithValue(err.response?.data || { message: "Failed to update status" });
+            const { data } = await api.put(`/api/application/${id}/status`, { applicationStatus });
+            console.log("Response from API:", data);
+            return data; // <-- you must return data here
+        } catch (error) {
+            return rejectWithValue(error.response?.data || { message: "Failed to update application status" });
         }
     }
 );
+
+export const getReceivedApplicatList = createAsyncThunk("jobs/getReceivedApplicatList", async (jobId, { rejectWithValue }) => {
+    console.log(`am i getting job ID`, jobId);
+
+    try {
+        const { data } = await api.get(`/api/application/${jobId}`)
+        return data
+
+    } catch (error) {
+        return rejectWithValue(err.response?.data || { message: "Failed to update status" });
+    }
+})
 
 const jobSlice = createSlice({
     name: "jobs",

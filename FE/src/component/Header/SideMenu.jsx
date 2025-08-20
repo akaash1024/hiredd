@@ -60,11 +60,9 @@ export const SideMenu = () => {
   };
 
   const handleLogout = async () => {
-    
     try {
       const result = await dispatch(logoutUser()).unwrap();
       toast.success(result.message);
-      
     } catch (err) {
       toast.error(err.message || "Login failed");
     } finally {
@@ -91,13 +89,13 @@ export const SideMenu = () => {
           <section
             className="section section-1"
             style={{
-              height: "7.2rem",
+              height: "8.3rem",
               background:
                 "linear-gradient(135deg,var(--btn-color) 0%,var(--btn-hover) 100%)",
             }}
           ></section>
-
-          {currentUser && <button onClick={handleLogout}>Logout</button>}
+          
+          {currentUser && <button style={{margin:"1rem"}} onClick={handleLogout}>Logout</button>}
           {!currentUser ? (
             <Login />
           ) : (

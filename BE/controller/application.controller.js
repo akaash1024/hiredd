@@ -8,7 +8,7 @@ const applyJob = async (req, res, next) => {
     try {
         const { jobId } = req.body;
         console.log(jobId);
-        
+
 
         // Check if job exists
         const job = await JobModel.findById(jobId);
@@ -62,10 +62,37 @@ const getJobApplications = async (req, res, next) => {
     }
 };
 
+const updateApplicationStatus = async (req, res, next) => {
+    const { id } = req.params;
+    const { applicationStatus } = req.body;
+
+    try {
+        const application = await Application.findByIdAndUpdate(
+            id,
+            { status: applicationStatus }, 
+            { new: true }
+        );
+
+        if (!application) {
+            return res.status(404).json({ success: false, message: "Application not found" });
+        }
+
+        res.json({
+            success: true,
+            message: "Application status updated successfully",
+            application,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 
 module.exports = {
     applyJob,
     getMyApplications,
     getJobApplications,
-    
+    updateApplicationStatus
+
 }

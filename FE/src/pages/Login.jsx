@@ -10,8 +10,11 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { status, error, message } = useSelector((state) => state.users);
-  const handleGuestLogin = () => {
+  const handleCandidateLogin = () => {
     setFormData({ email: "ajit.morya@example.com", password: "ajit.morya" });
+  };
+  const handleHirerLogin = () => {
+    setFormData({ email: "meena.kevat@example.com", password: "meena.kevat" });
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,10 +37,6 @@ export const Login = () => {
     <div className="container">
       <div className="login-box">
         <h1>Login to get more opportunities</h1>
-        <h4>
-          Right opportunity is waiting for you.{" "}
-          <Link to="/register">Join Today</Link>
-        </h4>
 
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
@@ -68,7 +67,15 @@ export const Login = () => {
               {status === "loading" ? "Logging in..." : "Login"}
             </button>
 
-            <button onClick={handleGuestLogin}>Guest Login</button>
+            <button
+              onClick={handleCandidateLogin}
+              disabled={status === "loading"}
+            >
+              {status === "loading" ? "Logging in..." : "Candidate"}
+            </button>
+            <button onClick={handleHirerLogin} disabled={status === "loading"}>
+              Hirer
+            </button>
           </div>
 
           {/* {error && <p className="error">{error}</p>} */}

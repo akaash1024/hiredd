@@ -8,6 +8,6 @@ applicationRoute.route("/me").get(isAuthenticated, applicationController.getMyAp
 
 applicationRoute.route("/:jobId").get(isAuthenticated, applicationController.getJobApplications)
 
-
+applicationRoute.route("/:id/status").put(isAuthenticated, applicationController.updateApplicationStatus)
 
 module.exports  = applicationRoute

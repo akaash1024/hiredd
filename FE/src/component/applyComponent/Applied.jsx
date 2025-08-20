@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAppliedJobs } from "../../features/jobs/jobSlice";
 import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { fetchApplications } from "../../features/applications/applicationSlice";
 
 const Card = ({ info }) => {
   if (!info) return null;
@@ -49,9 +50,12 @@ export const Applied = () => {
   const dispatch = useDispatch();
   const { currentPage, itemsPerPage } = useAuth();
   const { jobs, status, error } = useSelector((state) => state.jobs);
+  const { applications } = useSelector((state) => state.applications);
+  console.log(applications);
 
   useEffect(() => {
     dispatch(fetchAppliedJobs(currentPage, itemsPerPage));
+    dispatch(fetchApplications());
   }, [dispatch]);
 
   if (status === "loading") {
@@ -69,8 +73,15 @@ export const Applied = () => {
   if (status === "succeeded") {
     return (
       <div className="hire-mainSection--container grid grid_Col_Four">
-        {jobs.map((job) => (
-          <Card key={job._id} info={job.jobId ?? job} />
+        {applications?.map((app) => (
+          <Card
+            key={app._id}
+            info={{
+              ...app.jobId, 
+              status: app.status, 
+              resumeUrl: app.resumeUrl,
+            }}
+          />
         ))}
       </div>
     );

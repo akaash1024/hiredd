@@ -5,10 +5,15 @@ import { api } from "../../api/axios"
 export const fetchApplications = createAsyncThunk(
     "applications/fetchApplications",
     async () => {
-        const res = await api.get("/applications");
-        return res.data;
+        const { data } = await api.get("/api/application/me");
+        return data
+        
     }
 );
+
+export const fetchAppliedJobs = createAsyncThunk("applications/fetchAppliedJobs", async () => {
+
+})
 
 export const submitApplication = createAsyncThunk(
     "applications/submitApplication",
@@ -33,7 +38,9 @@ const applicationSlice = createSlice({
             })
             .addCase(fetchApplications.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.applications = action.payload;
+                state.applications = action.payload.applications;
+                console.log(state.applications);
+                
             })
             .addCase(fetchApplications.rejected, (state, action) => {
                 state.status = "failed";
