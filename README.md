@@ -4,7 +4,7 @@ A comprehensive full-stack job portal application built with the MERN stack, con
 
 ## 🚀 Live Demo
 
-- **Frontend**: [https://hiredd-git-main-akashs-projects-dc5d2db0.vercel.app](https://hiredd-git-main-akashs-projects-dc5d2db0.vercel.app)
+- **Frontend**: [https://hiredd-vwh1.onrender.com](https://hiredd-dun.vercel.app/)
 - **Backend API**: [https://hiredd-vwh1.onrender.com](https://hiredd-vwh1.onrender.com)
 
 ## 📋 Table of Contents
@@ -18,27 +18,39 @@ A comprehensive full-stack job portal application built with the MERN stack, con
 - [Upcoming Features](#upcoming-features)
 - [Contributing](#contributing)
 
-## ✨ Features
 
 ### For Job Seekers
-- 👤 **User Registration & Authentication** - Secure signup/login with JWT tokens
-- 📄 **Profile Management** - Upload profile pictures and manage personal information
-- 🔍 **Job Search** - Browse and search through available job postings
-- 📧 **Application Tracking** - Track job application status
-- 🔒 **Secure Sessions** - Cookie-based authentication for persistent login
+- 👤 **User Registration & Authentication** - Admin side only for now.
+- 📄 **Profile Management** - Upload and manage profile pictures with automatic image resizing
+- 🖼️ **Image Optimization** - Automatic image compression and resizing for optimal performance
+- 🔍 **Advanced Job Search** - Browse, filter, and search through available job postings
+- 📧 **Application Tracking** - Real-time job application status updates 
+- ⭐ **Job Bookmarking** - Not handled from FE part
 
 ### For Recruiters
-- 🏢 **Company Profiles** - Create and manage company information
-- 📝 **Job Posting** - Post job openings with detailed descriptions
-- 👥 **Candidate Management** - Review and manage job applications
-- 📊 **Dashboard** - Monitor job postings and application metrics
+- 🏢 **Company Profile Management** - Create and manage detailed company information
+- 👥 **Candidate Management** - Review, filter, and manage job applications efficiently
+- 📊 **Recruitment Dashboard** - Monitor job postings, applications,
+- 🔍 **Candidate Search** - Work in Progress
 
 ### Technical Features
-- 🔐 **Role-Based Access Control** - Different permissions for job seekers and recruiters
-- ☁️ **Cloud Storage** - Cloudinary integration for profile image uploads
-- 📱 **Responsive Design** - Mobile-friendly interface // might be differ *Currently WIP
-- 🛡️ **Security** - Secure authentication with httpOnly cookies
-- 🚀 **Production Ready** - Deployed on Render (backend) and Vercel (frontend)
+- 🔐 **Role-Based Access Control** - Granular permissions for job seekers, recruiters, and admins
+- ☁️ **Cloud Storage Integration** - Cloudinary integration with automatic image optimization
+- 🛡️ **Advanced Security** - Secure authentication with httpOnly cookies and CSRF protection
+- 🔄 **Real-time Updates** - Live status updates for applications
+- 📊 **Data Validation** - Comprehensive input validation and sanitization
+- 🔧 **Error Handling** - Comprehensive error logging and user-friendly error messages
+- 📦 **Modular Architecture** - Clean, maintainable code structure
+- 🧪 **API Testing** - Comprehensive test coverage for all endpoints
+
+##  📷 Screenshot
+<img width="1920" height="1080" alt="Screenshot 2025-08-20 105755" src="https://github.com/user-attachments/assets/97b7aa0d-f515-4fef-bd01-5ca38a44c048" />
+<img width="1919" height="1079" alt="Screenshot 2025-08-20 105819" src="https://github.com/user-attachments/assets/199fffa1-7cd4-4c93-ad01-6c1865486554" />
+<img width="527" height="498" alt="Screenshot 2025-08-19 180807" src="https://github.com/user-attachments/assets/b696c8a7-69dc-4a65-abb6-937d35623946" />
+<img width="1920" height="1080" alt="Screenshot 2025-08-20 105612" src="https://github.com/user-attachments/assets/7b821abc-6ba3-42d4-9ee2-67d413560234" />
+<img width="1920" height="1080" alt="Screenshot 2025-08-20 105620" src="https://github.com/user-attachments/assets/2c598c78-4bbe-4dad-8908-976bcc666842" />
+<img width="1920" height="1080" alt="Screenshot 2025-08-20 105638" src="https://github.com/user-attachments/assets/26591ca3-9aec-4ea1-a10a-fd08cae697ce" />
+<img width="1920" height="1080" alt="Screenshot 2025-08-20 105723" src="https://github.com/user-attachments/assets/e5a33acc-097b-40ff-8ba1-8dfa3d1ac684" />
 
 ## 🛠️ Tech Stack
 
@@ -57,7 +69,7 @@ A comprehensive full-stack job portal application built with the MERN stack, con
 - **JWT** - JSON Web Tokens for authentication
 - **Cookie Parser** - Cookie handling middleware
 - **Multer** - File upload handling
-- **Cloudinary** - Cloud-based image storage
+- **Cloudinary** - Cloud-based image storage with automatic resizing
 
 ### Deployment & Tools
 - **Vercel** - Frontend deployment
@@ -165,16 +177,11 @@ A comprehensive full-stack job portal application built with the MERN stack, con
 2. Set `VITE_API_URL` environment variable
 3. Deploy with automatic builds on push
 
-``` 
 ## 🔮 Upcoming Features
 
-- 🤖 **AI Integration** - AI-powered job matching and resume analysis
 - 👨‍💼 **Admin Dashboard** - Comprehensive admin controls and analytics
-- 📊 **Advanced Analytics** - Job posting performance and application insights
-- 💬 **Real-time Chat** - Communication between recruiters and candidates
 - 📧 **Email Notifications** - Automated notifications for applications and updates
-- 🔍 **Advanced Search** - Filters by location, salary, experience level
-- ⭐ **Rating System** - Company and candidate rating mechanisms
+- 🤖 **AI Integration** - AI-powered job matching and resume analysis
 
 ## 🤝 Contributing
 
@@ -189,7 +196,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
-```
-
-
-
